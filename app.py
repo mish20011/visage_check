@@ -4,6 +4,7 @@ import skimage
 import pathlib
 import pandas as pd
 
+# Load the model
 plt = platform.system()
 if plt == 'Linux': pathlib.WindowsPath = pathlib.PosixPath
 title = "Face condition Analyzer"
