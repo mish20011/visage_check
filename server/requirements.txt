@@ -7,3 +7,5 @@ scikit-learn
 numpy
 pillow
 requests
+flask-cors
+pandas
