@@ -1,8 +1,8 @@
 # Defined in torch/csrc/monitor/python_init.cpp
 
-from typing import List, Dict, Callable, Union
-from enum import Enum
 import datetime
+from enum import Enum
+from typing import Callable
 
 class Aggregation(Enum):
     VALUE = ...
@@ -16,21 +16,24 @@ class Stat:
     name: str
     count: int
     def __init__(
-        self, name: str, aggregations: List[Aggregation], window_size: int,
+        self,
+        name: str,
+        aggregations: list[Aggregation],
+        window_size: int,
         max_samples: int = -1,
     ) -> None: ...
     def add(self, v: float) -> None: ...
-    def get(self) -> Dict[Aggregation, float]: ...
+    def get(self) -> dict[Aggregation, float]: ...
 
 class Event:
     name: str
     timestamp: datetime.datetime
-    data: Dict[str, Union[int, float, bool, str]]
+    data: dict[str, int | float | bool | str]
     def __init__(
         self,
         name: str,
         timestamp: datetime.datetime,
-        data: Dict[str, Union[int, float, bool, str]],
+        data: dict[str, int | float | bool | str],
     ) -> None: ...
 
 def log_event(e: Event) -> None: ...
