@@ -1,13 +1,20 @@
 import { useState } from "react";
 import axios from "axios";
+import "./style.css";
+import "./App.css";
 
 function App() {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
   const [prediction, setPrediction] = useState(null);
   const [recommendations, setRecommendations] = useState([]);
 
   const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+      setPreviewUrl(URL.createObjectURL(file));
+    }
   };
 
   const handleUpload = async () => {
@@ -20,7 +27,6 @@ function App() {
     formData.append("file", selectedFile);
 
     try {
-      // Send image to Flask backend
       const response = await axios.post("http://127.0.0.1:8080/predict", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
@@ -42,13 +48,34 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1>VisageCheck - Skin Analyzer</h1>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Analyze</button>
+    <div className="container">
+      {/* Header */}
+      <div className="header">
+        <div className="logo">
+          {/* Optional logo image */}
+          {/* <img src="logo.png" alt="Logo" className="logo-img" /> */}
+          <span className="webapp-name">VisageCheck - Skin Analyzer</span>
+        </div>
+      </div>
 
+      {/* Upload Form */}
+      <div className="upload-form">
+        <label className="upload-label">Upload a facial image:</label>
+        <input type="file" onChange={handleFileChange} />
+        <button onClick={handleUpload}>Analyze</button>
+
+        {/* Image Preview */}
+        {previewUrl && (
+          <div className="image-preview">
+            <h3>Image Preview:</h3>
+            <img src={previewUrl} alt="Selected Preview" width="300" />
+          </div>
+        )}
+      </div>
+
+      {/* Results */}
       {prediction && (
-        <div>
+        <div className="disease-description">
           <h2>Prediction: {prediction}</h2>
           <h3>Recommended Products:</h3>
           <ul>
