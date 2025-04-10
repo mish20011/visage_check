@@ -15,7 +15,7 @@ CORS(app)
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
-MODEL_PATH = r"C:\Users\j_ant\Downloads\tc3202-3a-9\server\model\export.pkl"
+MODEL_PATH = r"C:\Users\PC\Desktop\visage_check\server\model\export.pkl"
 
 try:
     model = load_learner(MODEL_PATH)
