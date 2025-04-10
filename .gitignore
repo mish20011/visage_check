@@ -1,0 +1,24 @@
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# IDE files (if applicable)
+.idea/
+.vscode/
+
+# Compiled Python files
+*.pyc
+
+# Log files (if any)
+*.log
+
+# Other temporary or build files (add as needed)
+build/
+dist/
+*.tmpclient/model/export.pkl
+server/venv/**
+
+venv
+
+node_modules

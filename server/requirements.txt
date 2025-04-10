@@ -1,0 +1,11 @@
+flask
+fastai
+torch
+torchvision
+torchaudio
+scikit-learn
+numpy
+pillow
+requests
+flask-cors
+pandas
